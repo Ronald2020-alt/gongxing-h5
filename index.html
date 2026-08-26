@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>躬行先锋 · 海报生成</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ma-shan-zheng@5/index.css">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<div class="app">
+  <!-- ===== 左侧：编辑面板 ===== -->
+  <aside class="panel">
+    <header class="panel-header">
+      <div class="brand-mark">躬</div>
+      <div>
+        <h1>躬行先锋</h1>
+        <p>一线文化践行瞬间 · 海报生成器</p>
+      </div>
+    </header>
+
+    <div class="panel-scroll">
+      <!-- 照片 -->
+      <section class="field-group">
+        <label class="field-label">① 人物照片 <span>单张竖版 · 单人/双人</span></label>
+        <label class="photo-upload" id="photoUpload">
+          <input type="file" id="photoInput" accept="image/*" hidden>
+          <span class="upload-plus">＋</span>
+          <span class="upload-text">上传照片</span>
+        </label>
+        <div class="photo-tip" id="photoTip">上传后可点击预览区「调整构图」微调</div>
+      </section>
+
+      <!-- 节点 -->
+      <section class="field-group">
+        <label class="field-label">② 节点 / 节日</label>
+        <select id="nodeSelect" class="input"></select>
+        <div class="node-custom" id="nodeCustom" hidden>
+          <input class="input" id="tributeLine1" placeholder="致敬语第一行，如：致敬每一位">
+          <input class="input" id="tributeLine2" placeholder="致敬语第二行，如：辛勤付出的零售劳动者">
+          <input class="input" id="tributeEn" placeholder="英文点缀，如：Dragon Boat Festival（可空）">
+        </div>
+      </section>
+
+      <!-- 文案 -->
+      <section class="field-group">
+        <label class="field-label">③ 文艺主文案 <span>上价值的那句话</span></label>
+        <textarea class="input textarea" id="quote" rows="3" placeholder="例：一座商业空间的温度&#10;来自每一个认真工作的身影"></textarea>
+      </section>
+
+      <section class="field-group">
+        <label class="field-label">④ 人物信息</label>
+        <div class="grid-2">
+          <input class="input" id="shop" placeholder="门店，如：武汉门店">
+          <input class="input" id="dept" placeholder="部门/岗位，如：运营">
+        </div>
+        <input class="input mt" id="name" placeholder="姓名，如：文思图">
+        <input class="input mt" id="scene" placeholder="画面主要内容，如：客流高峰期间协助店铺快速收银">
+      </section>
+
+      <!-- 版式 -->
+      <section class="field-group">
+        <label class="field-label">⑤ 选择版式</label>
+        <div class="tpl-grid" id="tplGrid"></div>
+      </section>
+
+      <button class="btn-primary" id="btnDownload">⬇ 生成并下载海报</button>
+      <p class="foot-note">所有数据仅在本地浏览器处理，不会上传</p>
+    </div>
+  </aside>
+
+  <!-- ===== 右侧：预览 ===== -->
+  <main class="preview-area">
+    <div class="preview-toolbar">
+      <span class="toolbar-title">海报预览</span>
+      <button class="btn-ghost" id="btnAdjust">✂ 调整构图</button>
+      <button class="btn-ghost" id="btnReset">↺ 自动裁切</button>
+    </div>
+    <div class="preview-stage" id="previewStage">
+      <div class="poster-wrap" id="posterWrap">
+        <!-- ============ 海报画布 ============ -->
+        <div class="poster" id="poster" data-template="1">
+          <img class="p-photo" id="pPhoto" alt="">
+          <div class="p-grad-top"></div>
+          <div class="p-grad-bottom"></div>
+          <div class="p-vignette"></div>
+
+          <!-- 顶部 -->
+          <div class="p-top">
+            <div class="p-tribute">
+              <div class="p-tribute-line" id="pTributeLine1"></div>
+              <div class="p-tribute-line" id="pTributeLine2"></div>
+              <div class="p-tribute-en" id="pTributeEn"></div>
+            </div>
+            <div class="p-logo">
+              <span class="p-logo-en">SHAN OUTLET</span>
+              <span class="p-logo-cn">杉杉商业集团</span>
+            </div>
+          </div>
+
+          <!-- 中部 -->
+          <div class="p-mid">
+            <div class="p-quote-mark">“</div>
+            <div class="p-quote" id="pQuote"></div>
+            <div class="p-person" id="pPerson"></div>
+          </div>
+
+          <!-- 底部 -->
+          <div class="p-bottom">
+            <div class="p-kv">
+              <span class="p-kv-dot left"></span>
+              <span class="p-kv-text">躬行先锋</span>
+              <span class="p-kv-dot right"></span>
+            </div>
+            <div class="p-slogan">— 全维一流的奥莱引领者 —</div>
+            <div class="p-cities" id="pCities"></div>
+            <div class="p-qr">
+              <div class="p-qr-box"></div>
+              <span>扫码关注杉杉奥莱</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="adjust-hint" id="adjustHint" hidden>拖动照片调整位置 · 双指/滚轮缩放 · 完成后点「完成」</div>
+  </main>
+</div>
+
+<script src="./assets/html-to-image.js"></script>
+<script src="./script.js"></script>
+</body>
+</html>
