@@ -4,7 +4,8 @@
 (function () {
   'use strict';
 
-  const PW = 1080, PH = 2340; // 9:19.5
+  const PW = 1080;
+  let PH = 2340; // 9:19.5（切比例时变 1920）
 
   // ---------- 节点 / 节日 ----------
   const NODES = [
@@ -91,7 +92,15 @@
   const pKvText = $('#pKvText');
   function fitKvFont() {
     const len = (kvText.value || '').trim().length;
-    const size = len <= 2 ? 220 : len === 3 ? 200 : len === 4 ? 178 : 150;
+    let size;
+    if (len <= 1) size = 220;
+    else if (len <= 2) size = 200;
+    else if (len <= 3) size = 185;
+    else if (len <= 4) size = 170;
+    else if (len <= 5) size = 150;
+    else if (len <= 6) size = 130;
+    else if (len <= 8) size = 110;
+    else size = 90;
     pKvText.style.fontSize = size + 'px';
   }
   kvText.addEventListener('input', () => { pKvText.textContent = kvText.value.trim() || '躬行先锋'; fitKvFont(); });
@@ -236,6 +245,20 @@
   }
   window.addEventListener('resize', fitPreview);
   if (window.ResizeObserver) new ResizeObserver(fitPreview).observe(previewStage);
+
+  // ---------- 海报比例切换 ----------
+  const ratioSeg = $('#ratioSeg');
+  ratioSeg.addEventListener('click', (e) => {
+    const btn = e.target.closest('.seg-btn'); if (!btn) return;
+    ratioSeg.querySelectorAll('.seg-btn').forEach((b) => b.classList.toggle('active', b === btn));
+    setRatio(btn.dataset.ratio);
+  });
+  function setRatio(ratio) {
+    PH = ratio === '9:16' ? 1920 : 2340;
+    poster.dataset.ratio = ratio;
+    if (photoState.src) fitCover();
+    fitPreview();
+  }
 
   // ---------- 构图微调 ----------
   const btnAdjust = $('#btnAdjust'), btnReset = $('#btnReset'), adjustHint = $('#adjustHint');

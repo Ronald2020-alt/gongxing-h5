@@ -135,6 +135,14 @@ body { font-family: var(--font-sans); color: var(--text); background: #0f0f10; }
 .p-qr-label { font-size: 12px; letter-spacing: 1px; color: #e6e2d8; opacity: .9; margin-top: 10px; text-align: center; width: 176px; }
 .p-cities { font-size: 15px; letter-spacing: 1px; color: #ffffff; opacity: .5; margin-top: 20px; text-align: center; line-height: 1.7; }
 
+/* 9:16 比例（第一版：顶端/底端渐变到纯黑） */
+.poster[data-ratio="9:16"] { height: 1920px; }
+.poster[data-ratio="9:16"] .p-grad-top { height: 380px; }
+.poster[data-ratio="9:16"] .p-grad-bottom { height: 720px; }
+.poster[data-ratio="9:16"] .p-bottom { padding-bottom: 28px; }
+.poster[data-ratio="9:16"] .p-mid { top: 42%; }
+.poster[data-ratio="9:16"] .p-kv { min-height: 200px; }
+
 /* 主KV 字体选择 */
 .p-kv-text[data-font="hei"] { font-family: var(--font-sans); font-weight: 900; letter-spacing: 6px; }
 .p-kv-text[data-font="song"] { font-family: "Songti SC", "SimSun", "Noto Serif SC", serif; font-weight: 700; letter-spacing: 8px; }

@@ -53,7 +53,7 @@
         </div>
 
         <div id="kvTextMode" class="mt">
-          <input class="input" id="kvText" maxlength="5" placeholder="主标题文字，5字以内" value="躬行先锋">
+          <input class="input" id="kvText" placeholder="主标题文字" value="躬行先锋">
           <select id="kvFont" class="input mt">
             <option value="msz">书法 · 马善政楷书</option>
             <option value="hei">黑体 · 粗壮</option>
@@ -121,9 +121,18 @@
         <input class="input mt" id="qrLabel" maxlength="12" placeholder="二维码说明文字" value="扫码了解更多">
       </section>
 
-      <!-- ⑧ 版式 -->
+      <!-- ⑧ 海报比例 -->
       <section class="field-group">
-        <label class="field-label">⑧ 选择版式</label>
+        <label class="field-label">⑧ 海报比例</label>
+        <div class="seg" id="ratioSeg">
+          <button class="seg-btn active" data-ratio="9:19.5">9:19.5 全屏</button>
+          <button class="seg-btn" data-ratio="9:16">9:16 渐变</button>
+        </div>
+      </section>
+
+      <!-- ⑨ 版式 -->
+      <section class="field-group">
+        <label class="field-label">⑨ 选择版式</label>
         <div class="tpl-grid" id="tplGrid"></div>
       </section>
 
